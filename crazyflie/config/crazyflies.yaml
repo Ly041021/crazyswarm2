@@ -120,7 +120,9 @@ all:
       extPosStdDev: 1e-3
       extQuatStdDev: 0.5e-1
     motion:
-      disable: 1 # 光流不融入 EKF -> 定位纯动捕(光流原始量仍被板子记录, 作对比项)。装光流板后生效
+      disable: 1 # 光流(PMW3901,x/y)不融入 EKF -> 水平定位纯动捕(光流原始量仍被板子记录, 作对比项)
+    # zranger:                 # 需先刷带补丁的固件(见 ../../firmware/README.md)才有此参数
+    #   disable: 1             #   1=测高激光也不融入 -> Z 也纯动捕; 0(默认)=测高激光融入 Z。A/B 实机对比用
     # kalman:
     #   resetEstimation: 1
   # reference frame for on-board state-estimate of all drones (use robot_types/type_name to set per type, or
