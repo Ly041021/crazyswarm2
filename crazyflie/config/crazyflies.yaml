@@ -37,8 +37,8 @@ robots:
 robot_types:
   cf21:
     motion_capture:
-      tracking: "librigidbodytracker" # one of "vendor", "librigidbodytracker"
-      # only if enabled; see motion_capture.yaml
+      tracking: "vendor"  # 3-4 反光球在 NOKOV XingYing 里建成刚体, 由动捕软件输出 6DOF 位姿
+      # vendor 模式下 marker/dynamics 不用(那是 librigidbodytracker 才用); XingYing 里刚体名要=机体名(cf231)
       marker: default_single_marker
       dynamics: default
     big_quad: false
