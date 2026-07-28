@@ -45,6 +45,8 @@ def parse_yaml(context):
         motion_capture_content = yaml.safe_load(ymlfile)
 
     motion_capture_params = motion_capture_content['/motion_capture_tracking']['ros__parameters']
+    position_scale = float(motion_capture_params.pop('position_scale', 1.0))
+    poses_deadline = float(motion_capture_params['topics']['poses']['qos']['deadline'])
     motion_capture_params['rigid_bodies'] = dict()
     for key, value in crazyflies['robots'].items():
         type = crazyflies['robot_types'][value['type']]
@@ -68,6 +70,18 @@ def parse_yaml(context):
             name='motion_capture_tracking',
             output='screen',
             parameters= [motion_capture_params],
+            remappings=[('poses', 'poses_raw')],
+        ),
+        Node(
+            package='crazyflie',
+            executable='mocap_position_scaler',
+            condition=IfCondition(PythonExpression(["'", LaunchConfiguration('backend'), "' != 'sim' and '", LaunchConfiguration('mocap'), "' == 'True'"])),
+            name='mocap_position_scaler',
+            output='screen',
+            parameters=[{
+                'position_scale': position_scale,
+                'deadline_hz': poses_deadline,
+            }],
         ),
         Node(
             package='crazyflie_server_py',

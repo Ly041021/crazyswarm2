@@ -55,6 +55,14 @@ add_executable(crazyflie_server
   src/crazyflie_server.cpp
 )
 
+add_executable(mocap_position_scaler
+  src/mocap_position_scaler.cpp
+)
+target_link_libraries(mocap_position_scaler
+  rclcpp::rclcpp
+  ${motion_capture_tracking_interfaces_TARGETS}
+)
+
 if("${ROS_DISTRO_VALUE}" STREQUAL "humble")
   target_compile_definitions(crazyflie_server PRIVATE ROS_DISTRO_HUMBLE)
 endif()
@@ -98,6 +106,7 @@ install(TARGETS
   #
   teleop
   crazyflie_server
+  mocap_position_scaler
   DESTINATION lib/${PROJECT_NAME})
 
 # Install Python executables
