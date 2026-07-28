@@ -2,7 +2,7 @@
 fileversion: 3
 
 robots:
-  cf231:
+  crazyfile:
     enabled: true
     uri: radio://0/80/2M/E7E7E7E7E7
     initial_position: [0.0, 0.0, 0.0]
@@ -13,10 +13,10 @@ robots:
     # firmware_logging:
     #   enabled: true
     #   custom_topics:
-    #     topic_name3: 
+    #     topic_name3:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y"]
-    # reference_frame: "odom_cf231" # use a custom reference frame if no global coordinate system is available
+    # reference_frame: "odom_crazyfile" # use a custom reference frame if no global coordinate system is available
 
   cf5:
     enabled: false
@@ -38,7 +38,7 @@ robot_types:
   cf21:
     motion_capture:
       tracking: "vendor"  # 3-4 反光球在 NOKOV XingYing 里建成刚体, 由动捕软件输出 6DOF 位姿
-      # vendor 模式下 marker/dynamics 不用(那是 librigidbodytracker 才用); XingYing 里刚体名要=机体名(cf231)
+      # vendor 模式下 marker/dynamics 不用(那是 librigidbodytracker 才用); XingYing 里刚体名要=机体名(crazyfile)
       marker: default_single_marker
       dynamics: default
     big_quad: false

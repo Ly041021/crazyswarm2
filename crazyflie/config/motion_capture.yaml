@@ -1,9 +1,11 @@
 /motion_capture_tracking:
   ros__parameters:
     # one of "optitrack", "optitrack_closed_source", "vicon", "qualisys", "nokov", "vrpn", "motionanalysis"
-    type: "nokov"
+    # nokov 需要闭源 SDK 才能编译进 motion_capture_tracking, 我们没有该 SDK;
+    # 已验证 NOKOV 软件本身有 VRPN 广播, 用 vrpn 类型可直接连(见 SETUP_CRAZYSWARM2.md)
+    type: "vrpn"
     # Specify the hostname or IP of the computer running the motion capture software
-    hostname: "141.23.110.143"
+    hostname: "10.1.1.198"
 
     topics:
       frame_id: "mocap"
